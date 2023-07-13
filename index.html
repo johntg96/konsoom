@@ -11,10 +11,34 @@
 </head>
 <body>
   <header>
-
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">media_backlogger</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <form>
+                <input type="radio" name="media-type" value="movies" id="movies">
+                <label for="movies">Movies</label>
+                <input type="radio" name="media-type" value="tv-shows" id="tv-shows">
+                <label for="tv-shows">TV Shows</label>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   </header>
   <main>
-
+    <div class="container">
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-box">
+        <button class="btn btn-outline-success" type="submit" id="search-box-btn">Search</button>
+      </form>
+    </div>
   </main>
   <footer>
 
