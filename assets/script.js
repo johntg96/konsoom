@@ -17,7 +17,9 @@ const handleFormSubmit = () => {
     }
   }
 
-  document.location.href = `?${checkBoxCheck()}=${search}`; // <- ?key=value // <- URL Set Parameters
+  let urlQuery = `./log.html?media-type=${checkBoxCheck()}&search=${search}`; // <- ?key=value // <- URL Set Parameters
+  location.assign(urlQuery);
+  // 
 }
 
 searchBoxBtn.on(`click`, function(event) {
