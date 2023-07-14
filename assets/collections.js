@@ -1,11 +1,16 @@
 // step 1: get URL parameters of search from URL
-
+const omdpApiKey = `ab8ac5ee`;
+const omdpApiRootUrl = `http://www.omdbapi.com/?apikey=${omdpApiKey}&`;
 const urlParamsStr = document.location.href;
 const mediaTypeCheckboxMovie = $(`#movies`);
 const mediaTypeCheckboxTvShow = $(`#tv-shows`);
+const searchBox = $(`#search-box`);
+const searchBoxBtn = $(`#search-box-btn`);
 
 const urlParamsArr = [];
+let mediaType;
 
+// create an array of the URL parameters
 function getUrlParam(paramName){
   const params = document.location.search.slice(1);
   const allPairs = params.split("&");
@@ -17,13 +22,10 @@ function getUrlParam(paramName){
           console.log("We have found what we seek: " + parsed[1]);
       }
   })
+  mediaType = urlParamsArr[0][1];
 }
 
-getUrlParam(urlParamsStr);
-
-const mediaType = urlParamsArr[0][1];
-console.log(mediaType);
-
+// make sure the media selection checkboxes reflect search
 function setCheckBoxes() {
   // set 'checked' property of radio button
   if (mediaType === 'movies') {
@@ -39,6 +41,50 @@ function setCheckBoxes() {
   }
 }
 
-setCheckBoxes();
+// handle search input, create URL and travel to it
+function handleFormSubmit() {
+  let search = searchBox.val();
+  let mediaType;
 
-// console.log(urlParamsArr);
+  function checkBoxCheck() {
+    const radios = document.getElementsByName('media-type');
+    for (let i = 0; i < radios.length; i++) {
+      if (radios[i].checked) {
+        mediaType = radios[i].value;
+        return mediaType;
+      }
+    }
+  }
+
+  let urlQuery = `./log.html?media-type=${checkBoxCheck()}&search=${search}`; // <- ?key=value // <- URL Set Parameters
+  location.assign(urlQuery);
+}
+
+function searchApi() {
+  let apiUrl = `${omdpApiRootUrl}t=${urlParamsArr[1][1]}`; // also add "&type=" to URL to filter by media type (movie or tv show)
+  console.log(apiUrl);
+
+  fetch(apiUrl)
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+  })
+
+  // $.ajax({url:apiUrl})
+  // .then(function (response) {
+  //   console.log(response)
+  // });
+}
+
+// search button event listener
+searchBoxBtn.on(`click`, function(event) {
+  event.preventDefault();
+  handleFormSubmit();
+});
+
+
+getUrlParam(urlParamsStr);
+setCheckBoxes();
+searchApi();

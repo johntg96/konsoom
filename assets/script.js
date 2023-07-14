@@ -1,8 +1,6 @@
 const searchBox = $(`#search-box`);
 const searchBoxBtn = $(`#search-box-btn`);
 
-const omdpApiRootUrl = `http://www.omdbapi.com/?apikey=[yourkey]&`;
-
 const handleFormSubmit = () => {
   let search = searchBox.val();
   let mediaType;
