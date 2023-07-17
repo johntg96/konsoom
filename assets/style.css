@@ -1,3 +1,16 @@
 #search-results {
   gap: 10px;
 }
+
+.card-img-top {
+  width: 200px;
+  height: 200px;
+}
+
+.card {
+  height: auto;
+}
+
+.card-text {
+  font-size: 14px;
+}

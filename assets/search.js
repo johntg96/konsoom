@@ -127,16 +127,17 @@ function renderSearchResults(searchData) {
 
     // HTML bootstrap card created dynamically here:
     searchResults.append(`
+    <div class="col-3">
       <div class="card mt-2">
         <div class="card-header">
           <div class="card-body">
             <img class="card-img-top" src="${poster}"/>
-            <p class="card-text">${title}</p>
-            <p class="card-text">${type}</p>
-            <p class="card-text">${year}</p>
+            <p class="card-text">${title}<br/>${type}<br/>${year}</p>
+            <button class="btn btn-primary">Save</button>
           </div>
         </div>
       </div>
+    </div>
     `);
   }
 
