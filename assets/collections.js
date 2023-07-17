@@ -2,8 +2,9 @@
 const omdpApiKey = `ab8ac5ee`;
 const omdpApiRootUrl = `http://www.omdbapi.com/?apikey=${omdpApiKey}&`;
 const urlParamsStr = document.location.href;
-const mediaTypeCheckboxMovie = $(`#movies`);
-const mediaTypeCheckboxTvShow = $(`#tv-shows`);
+const mediaTypeCheckboxMovie = $(`#movie`);
+const mediaTypeCheckboxSeries = $(`#series`);
+const mediaTypeCheckboxEpisode = $(`#episode`);
 const searchBox = $(`#search-box`);
 const searchBoxBtn = $(`#search-box-btn`);
 
@@ -28,16 +29,27 @@ function getUrlParam(paramName){
 // make sure the media selection checkboxes reflect search
 function setCheckBoxes() {
   // set 'checked' property of radio button
-  if (mediaType === 'movies') {
-    console.log('movie checked');
-    mediaTypeCheckboxMovie.prop("checked", true);
-    mediaTypeCheckboxTvShow.prop("checked", false);
-  } else if (mediaType === 'tv-shows') {
-    console.log('tv-show checked');
-    mediaTypeCheckboxTvShow.prop("checked", true);
-    mediaTypeCheckboxMovie.prop("checked", false);
-  } else {
-    console.log('No media-type selection (checkboxes).');
+  switch (mediaType) {
+    case (`movie`):
+      mediaTypeCheckboxMovie.prop("checked", true);
+      mediaTypeCheckboxSeries.prop("checked", false);
+      mediaTypeCheckboxEpisode.prop("checked", false);
+      break;
+    case (`series`):
+      mediaTypeCheckboxMovie.prop("checked", false);
+      mediaTypeCheckboxSeries.prop("checked", true);
+      mediaTypeCheckboxEpisode.prop("checked", false);
+      break;
+    case (`episode`):
+      mediaTypeCheckboxMovie.prop("checked", false);
+      mediaTypeCheckboxSeries.prop("checked", false);
+      mediaTypeCheckboxEpisode.prop("checked", true);
+      break;
+    default:
+      mediaTypeCheckboxMovie.prop("checked", false);
+      mediaTypeCheckboxSeries.prop("checked", false);
+      mediaTypeCheckboxEpisode.prop("checked", false)
+      break;
   }
 }
 
@@ -61,7 +73,7 @@ function handleFormSubmit() {
 }
 
 function searchApi() {
-  let apiUrl = `${omdpApiRootUrl}t=${urlParamsArr[1][1]}`; // also add "&type=" to URL to filter by media type (movie or tv show)
+  let apiUrl = `${omdpApiRootUrl}t=${urlParamsArr[1][1]}&type=${mediaType}`; // also add "&type=" to URL to filter by media type (movie or tv show)
   console.log(apiUrl);
 
   fetch(apiUrl)
@@ -72,7 +84,7 @@ function searchApi() {
     console.log(data);
   })
 
-  // $.ajax({url:apiUrl})
+  // $.ajax({url:apiUrl})Minneapolis
   // .then(function (response) {
   //   console.log(response)
   // });
