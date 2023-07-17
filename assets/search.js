@@ -63,6 +63,8 @@ function setCheckBoxes() {
       mediaTypeCheckboxEpisode.prop("checked", false)
       break;
   }
+
+  searchBox.val(decodeURI(urlParamsArr[1][1])); // sets search box input value to search URL parameter
 }
 
 // handle search input, create URL and travel to it
