@@ -8,6 +8,7 @@ const mediaTypeCheckboxSeries = $(`#series`);
 const mediaTypeCheckboxEpisode = $(`#episode`);
 const searchBox = $(`#search-box`);
 const searchBoxBtn = $(`#search-box-btn`);
+const searchResults = $(`#search-results`);
 
 const urlParamsArr = [];
 let mediaType;
@@ -79,7 +80,7 @@ function handleFormSubmit() {
     }
   }
 
-  let urlQuery = `./log.html?media-type=${checkBoxCheck()}&search=${search}`; // <- ?key=value // <- URL Set Parameters
+  let urlQuery = `./search-page.html?media-type=${checkBoxCheck()}&search=${search}`; // <- ?key=value // <- URL Set Parameters
   location.assign(urlQuery);
 }
 
@@ -100,6 +101,7 @@ function searchApi() {
   })
   .then(function (data) {
     console.log(data);
+    renderSearchResults(data);
   })
 
   // $.ajax({url:apiUrl})Minneapolis
@@ -114,6 +116,36 @@ searchBoxBtn.on(`click`, function(event) {
   handleFormSubmit();
 });
 
+function renderSearchResults(searchData) {
+
+  function renderCard(poster, title, type, year) {
+    console.log(poster, title, type, year);
+
+    // HTML bootstrap card created dynamically here:
+    searchResults.append(`
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-body">
+                <img class="card-text" src="${poster}"/>
+                <p class="card-text">${title}</p>
+                <p class="card-text">${type}</p>
+                <p class="card-text">${year}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `);
+  }
+
+
+  // console.log(searchData.Search[0].Title);
+  searchData.Search.forEach((result) => {
+    renderCard(result.Poster, result.Title, result.Type, result.Year);
+  });
+}
 
 getUrlParam(urlParamsStr);
 setCheckBoxes();

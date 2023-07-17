@@ -15,7 +15,7 @@ const handleFormSubmit = () => {
     }
   }
 
-  let urlQuery = `./log.html?media-type=${checkBoxCheck()}&search=${search}`; // <- ?key=value // <- URL Set Parameters
+  let urlQuery = `./search-page.html?media-type=${checkBoxCheck()}&search=${search}`; // <- ?key=value // <- URL Set Parameters
   location.assign(urlQuery);
   // 
 }
