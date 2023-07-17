@@ -1,10 +1,14 @@
+:root {
+  --bs-green: #198754;
+}
+
 #search-results {
   gap: 10px;
 }
 
 .card-img-top {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
 }
 
 .card {
@@ -13,4 +17,20 @@
 
 .card-text {
   font-size: 14px;
+}
+
+footer {
+  background-color: var(--bs-green);
+  border-top: 3px solid lightgreen;
+}
+
+footer a {
+  text-decoration: none;
+  color: white;
+  font-family: monospace;
+  font-size: 12px;
+}
+
+footer a:hover {
+  color: lightgreen;
 }

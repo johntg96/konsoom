@@ -122,10 +122,10 @@ function renderSearchResults(searchData) {
 
     // HTML bootstrap card created dynamically here:
     searchResults.append(`
-      <div class="col-3">
+      <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
         <div class="card-header text-center">
-          <img class="card-img-top" src="${poster}"/>
+          <img class="card-img-top img-fluid" src="${poster}"/>
         </div>
           <div class="card-body">
             <h6 class="card-title">${title}</h6>
