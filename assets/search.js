@@ -86,6 +86,7 @@ function handleFormSubmit() {
 
 function searchApi() {
   let apiUrl;
+  console.log(mediaType);
 
   if (mediaType !== `all-types`) {
     apiUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&type=${mediaType}`; // also add "&type=" to URL to filter by media type (movie, series, or episode)
@@ -103,11 +104,6 @@ function searchApi() {
     console.log(data);
     renderSearchResults(data);
   })
-
-  // $.ajax({url:apiUrl})Minneapolis
-  // .then(function (response) {
-  //   console.log(response)
-  // });
 }
 
 // search button event listener
@@ -119,33 +115,40 @@ searchBoxBtn.on(`click`, function(event) {
 function renderSearchResults(searchData) {
 
   function renderCard(poster, title, type, year) {
-    console.log(poster, title, type, year);
-
+    // console.log(poster, title, type, year);
     if (poster == 'N/A') {
       poster = `./assets/images/200x200.png`
     }
 
     // HTML bootstrap card created dynamically here:
     searchResults.append(`
-    <div class="col-3">
-      <div class="card mt-2">
-        <div class="card-header">
+      <div class="col-3">
+        <div class="card mt-2">
+        <div class="card-header text-center">
+          <img class="card-img-top" src="${poster}"/>
+        </div>
           <div class="card-body">
-            <img class="card-img-top" src="${poster}"/>
-            <p class="card-text">${title}<br/>${type}<br/>${year}</p>
-            <button class="btn btn-primary">Save</button>
+            <h6 class="card-title">${title}</h6>
+            <p class="card-text">${type}<br/>${year}</p>
+          </div>
+          <div class="card-footer">
+            <button class="btn btn-success" style="width:100%;">Save</button>
           </div>
         </div>
       </div>
-    </div>
     `);
   }
 
-
-  // console.log(searchData.Search[0].Title);
-  searchData.Search.forEach((result) => {
-    renderCard(result.Poster, result.Title, result.Type, result.Year);
-  });
+  if (searchData.Response == `True`) {
+    searchData.Search.forEach((result) => {
+      renderCard(result.Poster, result.Title, result.Type, result.Year);
+    });
+  } else {
+    searchResults.html(`
+      <h4 class="mt-5">No Results</h4>
+    `)
+  }
+  
 }
 
 getUrlParam(urlParamsStr);
