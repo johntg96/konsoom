@@ -132,7 +132,7 @@ function renderSearchResults(searchData) {
             <p class="card-text">${type}<br/>${year}</p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-success" style="width:100%;">Save</button>
+            <button class="btn btn-outline-success" style="width:100%;">Save</button>
           </div>
         </div>
       </div>
