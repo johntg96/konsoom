@@ -4,7 +4,6 @@ const urlParamsStr = document.location.href;
 const mediaTypeCheckboxAllTypes = $(`#all-types`);
 const mediaTypeCheckboxMovie = $(`#movie`);
 const mediaTypeCheckboxSeries = $(`#series`);
-const mediaTypeCheckboxEpisode = $(`#episode`);
 const searchBox = $(`#search-box`);
 const searchBoxBtn = $(`#search-box-btn`);
 const searchResults = $(`#search-results`);
@@ -38,31 +37,26 @@ function setCheckBoxes() {
       mediaTypeCheckboxAllTypes.prop("checked", true);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
     case "movie":
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", true);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
     case "series":
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", true);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
     case "episode":
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", true);
       break;
     default:
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
   }
 
@@ -328,11 +322,12 @@ function toggleDark() {
 function setDarkMode(mode) {
   if (mode == 'dark') {
     document.body.dataset.bsTheme = `dark`;
+    $(`#flexSwitchCheckChecked`).prop("checked", true); // set dark mode visual toggle/switch to correct position
     changeColor($(`.navbar-brand`));
   } else {
     document.body.dataset.bsTheme = "light";
+    $(`#flexSwitchCheckChecked`).prop("checked", false);
   }
-  
 }
 
 setDarkMode(darkMode);

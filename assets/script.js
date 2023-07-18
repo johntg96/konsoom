@@ -54,9 +54,11 @@ function toggleDark() {
 function setDarkMode(mode) {
   if (mode == 'dark') {
     document.body.dataset.bsTheme = `dark`;
+    $(`#flexSwitchCheckChecked`).prop("checked", true); // set dark mode visual toggle/switch to correct position
     changeColor($(`.navbar-brand`));
   } else {
     document.body.dataset.bsTheme = "light";
+    $(`#flexSwitchCheckChecked`).prop("checked", false);
   }
 }
 

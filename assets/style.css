@@ -11,6 +11,28 @@
   color: white;
 }
 
+input[type='radio'] {
+  accent-color: var(--bs-green);
+}
+
+#flexSwitchCheckChecked:checked {
+  background-color: var(--bs-green);
+  border: none;
+}
+
+#flexSwitchCheckChecked:focus,  #flexSwitchCheckChecked:active {
+  border-color: var(--bs-green);
+  box-shadow: inset 0 1px 1px rgba(25, 135, 84, 0.75), 0 0 8px rgba(25, 135, 84, 0.75);
+}
+
+#flexSwitchCheckChecked {
+  color: var(--bs-green);
+}
+
+#media-type-selection input {
+  margin-left: 10px;
+}
+
 #search-results {
   gap: 10px;
 }
