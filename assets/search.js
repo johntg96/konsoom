@@ -27,6 +27,7 @@ function getUrlParam(paramName) {
       console.log("We have found what we seek: " + parsed[1]);
     }
   });
+  
   mediaType = urlParamsArr[0][1];
 }
 
@@ -132,8 +133,16 @@ function renderSearchResults(searchData) {
     let totalSearchPages = calcNumPages(totalResults, resultsPerPage);
 
     for (let i = 1; i <= totalSearchPages; i++) {
-      let apiSearchUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&page=${i}`;
+      let apiSearchUrl;
+
+      if (mediaType !== "all-types") {
+        apiSearchUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&type=${mediaType}&page=${i}`;
+      } else {
+        apiSearchUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&page=${i}`;
+      }
+
       console.log(apiSearchUrl);
+      
       fetch(apiSearchUrl)
       .then(function(response) {
         return response.json();
