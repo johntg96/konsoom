@@ -27,7 +27,7 @@ function getUrlParam(paramName) {
       console.log("We have found what we seek: " + parsed[1]);
     }
   });
-  
+
   mediaType = urlParamsArr[0][1];
 }
 
@@ -122,9 +122,9 @@ function renderSearchResults(searchData) {
   let resultsPerPage = 10;
   console.log(totalResults);
 
-  // This calculates the number of pages needed. '.ceil' method rounds to the  next integer.
+  // This calculates the number of pages needed. '.ceil' method rounds to the next integer.
   function calcNumPages(totalResults, resultsPerPage) {
-    return Math.ceil(totalResults / resultsPerPage)
+    return Math.ceil(totalResults / resultsPerPage);
   }
   // Display number of pages of results
   console.log(calcNumPages(totalResults, resultsPerPage));
@@ -143,21 +143,20 @@ function renderSearchResults(searchData) {
       }
 
       console.log(apiSearchUrl);
-      
-      fetch(apiSearchUrl)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function (pageResults) {
-        console.log(pageResults);
 
-        pageResults.Search.forEach((result) => {
-          isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
-          renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+      fetch(apiSearchUrl)
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (pageResults) {
+          console.log(pageResults);
+
+          pageResults.Search.forEach((result) => {
+            isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
+            renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+          });
         });
-      })
     }
-    
   } else {
     searchResults.html(`
       <h4 class="mt-5">No Results</h4>
@@ -214,17 +213,22 @@ function getCardData(card) {
   const title = card.find(".card-title").text();
   const type = card.find(".card-text").eq(0).text();
   const year = card.find(".card-text").eq(1).text();
-  const imdbID = card.data("imdbID");
-  return { poster, title, type, year, imdbID };
+  return { poster, title, type, year };
 }
 
 // add movie to watchlist
 function addToWatchlist(movie, isInWatchlist) {
-  if (!isInWatchlist) {
-    watchlistMovies.push(movie);
-    const watchlistResults = $("#watchlist-results");
+  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title);
 
-    const card = `
+  if (isAlreadyAdded) {
+    alert(`${movie.title} is already in your watchlist.`);
+    return; // Exit the function without adding the movie again
+  }
+
+  watchlistMovies.push(movie);
+  const watchlistResults = $("#watchlist-results");
+
+  const card = `
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
@@ -242,24 +246,24 @@ function addToWatchlist(movie, isInWatchlist) {
       </div>
     `;
 
-    watchlistResults.append(card);
-    alert(`${movie.title} has been added to your watchlist.`);
+  watchlistResults.append(card);
+  alert(`${movie.title} has been added to your watchlist.`);
 
-    localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
-  }
+  localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
 
 // remove movie from watchlist
 function removeFromWatchlist(movie) {
-  const index = watchlistMovies.findIndex((m) => m.imdbID === movie.imdbID);
+  const index = watchlistMovies.findIndex((m) => m.title === movie.title && m.year === movie.year);
+
   if (index !== -1) {
     watchlistMovies.splice(index, 1);
   }
 
-  // update local storage with the updated watchlist
+  // Update local storage with the updated watchlist
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 
-  // re-render the watchlist after removing the movie
+  // Re-render the watchlist after removing the movie
   renderWatchlist();
 }
 
