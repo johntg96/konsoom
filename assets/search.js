@@ -156,3 +156,9 @@ function renderSearchResults(searchData) {
 getUrlParam(urlParamsStr);
 setCheckBoxes();
 searchApi();
+
+//light dark switch
+function toggleDark() {
+  var element = document.body;
+  element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
+}
