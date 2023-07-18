@@ -2,6 +2,11 @@
   --bs-green: #198754;
 }
 
+::selection {
+  background: var(--bs-green)
+  color: white;
+}
+
 #search-results {
   gap: 10px;
 }
@@ -13,11 +18,11 @@
 
 .card-img-top {
   width: 150px;
-  height: 150px;
+  height: 225px;
 }
 
 .card {
-  height: auto;
+  height: 100%;
 }
 
 .card-text {
@@ -38,4 +43,10 @@ footer a {
 
 footer a:hover {
   color: lightgreen;
+}
+
+.card-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
