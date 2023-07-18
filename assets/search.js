@@ -12,6 +12,7 @@ const searchResults = $(`#search-results`);
 let watchlistMovies = []; // Updated to store watchlist movies
 
 const urlParamsArr = [];
+
 let mediaType;
 
 // create an array of the URL parameters
@@ -116,12 +117,37 @@ searchBoxBtn.on("click", function (event) {
 // render search results
 function renderSearchResults(searchData) {
   let isInWatchlist; // Define the variable here
+  let totalResults = searchData.totalResults;
+  let resultsPerPage = 10;
+  console.log(totalResults);
+
+  // This calculates the number of pages needed. '.ceil' method rounds to the  next integer.
+  function calcNumPages(totalResults, resultsPerPage) {
+    return Math.ceil(totalResults / resultsPerPage)
+  }
+  // Display number of pages of results
+  console.log(calcNumPages(totalResults, resultsPerPage));
 
   if (searchData.Response === "True") {
-    searchData.Search.forEach((result) => {
-      isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
-      renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
-    });
+    let totalSearchPages = calcNumPages(totalResults, resultsPerPage);
+
+    for (let i = 1; i <= totalSearchPages; i++) {
+      let apiSearchUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&page=${i}`;
+      console.log(apiSearchUrl);
+      fetch(apiSearchUrl)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function (pageResults) {
+        console.log(pageResults);
+
+        pageResults.Search.forEach((result) => {
+          isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
+          renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+        });
+      })
+    }
+    
   } else {
     searchResults.html(`
       <h4 class="mt-5">No Results</h4>
