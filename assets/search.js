@@ -1,4 +1,3 @@
-// step 1: Get URL parameters of search from URL
 const omdpApiKey = `ab8ac5ee`;
 const omdpApiRootUrl = `https://www.omdbapi.com/?apikey=${omdpApiKey}&`;
 const urlParamsStr = document.location.href;
@@ -12,7 +11,7 @@ const searchResults = $(`#search-results`);
 let watchlistMovies = []; // Updated to store watchlist movies
 
 const urlParamsArr = [];
-
+let darkMode = localStorage.getItem(`darkMode`);
 let mediaType;
 
 // create an array of the URL parameters
@@ -301,22 +300,45 @@ function renderWatchlist() {
   });
 }
 
-retrieveWatchlist();
-
-getUrlParam(urlParamsStr);
-setCheckBoxes();
-searchApi();
+// change an elements styling for dark mode
+function changeColor(element) {
+  element.toggleClass("dark-toggle");
+}
 
 //light dark switch
 function toggleDark() {
+  let darkMode = localStorage.getItem(`darkMode`);
+  console.log(darkMode);
+
   // set body to dark mode
   var element = document.body;
   element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
 
-  function changeColor(field) {
-    field.toggleClass("dark-toggle");
+  // store dark mode preference in local storage
+  if (element.dataset.bsTheme == 'dark') {
+    localStorage.setItem(`darkMode`, `dark`);
+  } else {
+    localStorage.setItem(`darkMode`, `light`);
   }
+
+  console.log(`dark mode is on?: ${localStorage.getItem(`darkMode`)}`);
 
   // change navbar title color on theme change
   changeColor($(`.navbar-brand`));
 }
+
+// purpose: keep dark mode persistent across page refresh
+function setDarkMode(mode) {
+  if (mode == 'dark') {
+    document.body.dataset.bsTheme = `dark`;
+  } else {
+    document.body.dataset.bsTheme = "light";
+  }
+  changeColor($(`.navbar-brand`));
+}
+
+setDarkMode(darkMode);
+retrieveWatchlist();
+getUrlParam(urlParamsStr);
+setCheckBoxes();
+searchApi();
