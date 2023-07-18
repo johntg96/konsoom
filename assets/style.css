@@ -50,3 +50,13 @@ footer a:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+#watchlist-header {
+  margin-top: 15px;
+  background-color: var(--bs-green);
+  color: white;
+  padding: 10px;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 3px solid lightgreen;
+}
