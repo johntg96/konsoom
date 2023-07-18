@@ -15,10 +15,6 @@
   gap: 10px;
 }
 
-#results-info {
-  color: gray;
-}
-
 .form-control:focus {
   border-color: var(--bs-green);
   box-shadow: inset 0 1px 1px rgba(25, 135, 84, 0.75), 0 0 8px rgba(25, 135, 84, 0.75);

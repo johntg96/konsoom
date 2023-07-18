@@ -128,7 +128,7 @@ function renderSearchResults(searchData) {
   }
   // Display number of pages of results
   console.log(calcNumPages(totalResults, resultsPerPage));
-  $(`#results-info`).append(`<br/>Total Results: <strong style="color:black;">${totalResults}</strong></br>`);
+  $(`#results-info`).append(`<br/>Total Results: <strong>${totalResults}</strong></br>`);
 
   if (searchData.Response === "True") {
     let totalSearchPages = calcNumPages(totalResults, resultsPerPage);
