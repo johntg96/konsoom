@@ -74,3 +74,7 @@ footer a:hover {
   font-weight: bold;
   border-bottom: 3px solid lightgreen;
 }
+
+#watchlist-results {
+  gap: 10px;
+}
