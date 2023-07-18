@@ -1,2 +1,4 @@
 # media_backlogger
-## api project
+## Description
+Search watched movies or television shows and save them to a collection.
+![screenshot](./assets/images/screenshot.png)
