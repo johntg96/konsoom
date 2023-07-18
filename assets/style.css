@@ -40,11 +40,3 @@ footer a:hover {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-
-.space-16 {
-  margin-bottom: 16px;
-}
-
-.space-32 {
-  margin-bottom: 32px;
-}
