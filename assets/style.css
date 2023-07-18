@@ -2,6 +2,11 @@
   --bs-green: #198754;
 }
 
+::selection {
+  background: var(--bs-green)
+  color: white;
+}
+
 #search-results {
   gap: 10px;
 }
