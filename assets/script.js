@@ -24,3 +24,9 @@ searchBoxBtn.on(`click`, function(event) {
   event.preventDefault();
   handleFormSubmit();
 });
+
+//light dark switch
+function toggleDark() {
+  var element = document.body;
+  element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
+}
