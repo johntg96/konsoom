@@ -142,7 +142,8 @@ function renderCard(poster, title, type, year, isInWatchlist) {
         </div>
         <div class="card-body">
           <h6 class="card-title">${title}</h6>
-          <p class="card-text">${type}<br/>${year}</p>
+          <p class="card-text">${type}</p>
+          <p class="card-text">${year}</p>
         </div>
         <div class="card-footer">
           <button class="btn ${isInWatchlist ? "btn-danger remove-btn" : "btn-success save-btn"}" style="width:100%;">${saveButtonText}</button>
@@ -193,7 +194,8 @@ function addToWatchlist(movie, isInWatchlist) {
           </div>
           <div class="card-body">
             <h6 class="card-title">${movie.title}</h6>
-            <p class="card-text">${movie.type}<br/>${movie.year}</p>
+            <p class="card-text">${movie.type}</p>
+            <p class="card-text">${movie.year}</p>
           </div>
           <div class="card-footer">
             <button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>
@@ -246,7 +248,8 @@ function renderWatchlist() {
           </div>
           <div class="card-body">
             <h6 class="card-title">${movie.title}</h6>
-            <p class="card-text">${movie.type}<br/>${movie.year}</p>
+            <p class="card-text">${movie.type}</p>
+            <p class="card-text">${movie.year}</p>
           </div>
           <div class="card-footer">
             <button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>
