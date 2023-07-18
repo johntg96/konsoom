@@ -199,6 +199,7 @@ searchResults.on("click", ".save-btn", function () {
   const cardData = getCardData(card);
   const isInWatchlist = $(this).data("isInWatchlist") === true;
   addToWatchlist(cardData, isInWatchlist);
+  card.remove(); // remove the card from the search results
   $(this).replaceWith(`<button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>`);
 });
 
