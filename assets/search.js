@@ -117,7 +117,7 @@ function renderSearchResults(searchData) {
   function renderCard(poster, title, type, year) {
     // console.log(poster, title, type, year);
     if (poster == 'N/A') {
-      poster = `./assets/images/200x200.png`
+      poster = `./assets/images/200x300.png`
     }
 
     // HTML bootstrap card created dynamically here:

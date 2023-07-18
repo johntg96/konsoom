@@ -8,11 +8,11 @@
 
 .card-img-top {
   width: 150px;
-  height: 150px;
+  height: 225px;
 }
 
 .card {
-  height: auto;
+  height: 100%;
 }
 
 .card-text {
@@ -33,4 +33,18 @@ footer a {
 
 footer a:hover {
   color: lightgreen;
+}
+
+.card-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.space-16 {
+  margin-bottom: 16px;
+}
+
+.space-32 {
+  margin-bottom: 32px;
 }
