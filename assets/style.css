@@ -29,9 +29,24 @@
   font-size: 14px;
 }
 
+.card-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.container {
+  margin-top: 20px;
+}
+
+.footer-wrapper {
+  margin-top: 25px;
+}
+
 footer {
   background-color: var(--bs-green);
   border-top: 3px solid lightgreen;
+  padding: 5px;
 }
 
 footer a {
@@ -45,14 +60,9 @@ footer a:hover {
   color: lightgreen;
 }
 
-.card-title {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
 #watchlist-header {
-  margin-top: 15px;
+  margin-top: 25px;
+  margin-bottom: 20px;
   background-color: var(--bs-green);
   color: white;
   padding: 10px;
