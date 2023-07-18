@@ -307,9 +307,6 @@ function changeColor(element) {
 
 //light dark switch
 function toggleDark() {
-  let darkMode = localStorage.getItem(`darkMode`);
-  console.log(darkMode);
-
   // set body to dark mode
   var element = document.body;
   element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
@@ -321,7 +318,7 @@ function toggleDark() {
     localStorage.setItem(`darkMode`, `light`);
   }
 
-  console.log(`dark mode is on?: ${localStorage.getItem(`darkMode`)}`);
+  console.log(`dark mode setting: ${localStorage.getItem(`darkMode`)}`);
 
   // change navbar title color on theme change
   changeColor($(`.navbar-brand`));
