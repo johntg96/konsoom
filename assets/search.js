@@ -331,10 +331,11 @@ function toggleDark() {
 function setDarkMode(mode) {
   if (mode == 'dark') {
     document.body.dataset.bsTheme = `dark`;
+    changeColor($(`.navbar-brand`));
   } else {
     document.body.dataset.bsTheme = "light";
   }
-  changeColor($(`.navbar-brand`));
+  
 }
 
 setDarkMode(darkMode);
