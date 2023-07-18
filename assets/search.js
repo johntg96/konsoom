@@ -1,6 +1,6 @@
 // step 1: get URL parameters of search from URL
 const omdpApiKey = `ab8ac5ee`;
-const omdpApiRootUrl = `http://www.omdbapi.com/?apikey=${omdpApiKey}&`;
+const omdpApiRootUrl = `https://www.omdbapi.com/?apikey=${omdpApiKey}&`;
 const urlParamsStr = document.location.href;
 const mediaTypeCheckboxAllTypes = $(`#all-types`);
 const mediaTypeCheckboxMovie = $(`#movie`);
