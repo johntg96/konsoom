@@ -7,6 +7,10 @@
   color: white;
 }
 
+.dark-toggle {
+  color: white;
+}
+
 #search-results {
   gap: 10px;
 }
