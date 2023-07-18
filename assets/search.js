@@ -307,7 +307,14 @@ searchApi();
 
 //light dark switch
 function toggleDark() {
+  // set body to dark mode
   var element = document.body;
   element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
-  $(`.navbar-brand`).css({"color": "white"});
+
+  function changeColor(field) {
+    field.toggleClass("dark-toggle");
+  }
+
+  // change navbar title color on theme change
+  changeColor($(`.navbar-brand`));
 }
