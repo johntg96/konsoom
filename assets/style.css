@@ -7,8 +7,18 @@
   color: white;
 }
 
-.dark-toggle {
+.navbar {
+  background-color: black;
   color: white;
+  border-bottom: 2px solid #4e4e4e;
+}
+
+.navbar-brand {
+  color: white;
+}
+
+.navbar-brand:hover {
+  color: var(--bs-green);
 }
 
 input[type='radio'] {
@@ -33,8 +43,12 @@ input[type='radio'] {
   margin-left: 10px;
 }
 
-#search-results {
-  gap: 10px;
+.results-info-container {
+  margin-top: 40px;
+}
+
+#results-info {
+  margin-top: 90px;
 }
 
 .form-control:focus {
