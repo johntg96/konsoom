@@ -74,6 +74,10 @@ input[type='radio'] {
   color: var(--bs-green);
 }
 
+#watchlist {
+  margin-top: 120px;
+}
+
 #watchlist-link {
   margin-right: auto;
 }
