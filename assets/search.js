@@ -87,7 +87,7 @@ function searchApi() {
   let apiUrl;
 
   if (mediaType !== "all-types") {
-    apiUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&type=${mediaType}`; // Also add "&type=" to URL to filter by media type (movie, series, or episode)
+    apiUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}&type=${mediaType}`; // also add "&type=" to URL to filter by media type (movie, series, or episode)
   } else {
     apiUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}`;
   }
@@ -98,6 +98,9 @@ function searchApi() {
     })
     .then(function (data) {
       console.log(data);
+      
+      const filteredResults = data.Search.filter(result => result.Type !== "game");
+      
       renderSearchResults(data);
     });
 }
@@ -115,11 +118,10 @@ function renderSearchResults(searchData) {
   let resultsPerPage = 10;
   console.log(totalResults);
 
-  // This calculates the number of pages needed. '.ceil' method rounds to the next integer.
   function calcNumPages(totalResults, resultsPerPage) {
     return Math.ceil(totalResults / resultsPerPage);
   }
-  // Display number of pages of results
+
   console.log(calcNumPages(totalResults, resultsPerPage));
   $(`#results-info`).append(`<br/>Total Results: <strong>${totalResults}</strong></br>`);
 
@@ -144,7 +146,10 @@ function renderSearchResults(searchData) {
         .then(function (pageResults) {
           console.log(pageResults);
 
-          pageResults.Search.forEach((result) => {
+          // filter out results with media type "game"
+          const filteredResults = pageResults.Search.filter(result => result.Type !== "game");
+
+          filteredResults.forEach((result) => {
             isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
             renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
           });
