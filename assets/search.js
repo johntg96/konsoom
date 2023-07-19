@@ -214,7 +214,7 @@ function getCardData(card) {
 
 // add movie to watchlist
 function addToWatchlist(movie, isInWatchlist) {
-  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title);
+  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type);
 
   if (isAlreadyAdded) {
     alert(`${movie.title} is already in your watchlist.`);
