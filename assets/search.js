@@ -112,11 +112,11 @@ searchBoxBtn.on("click", function (event) {
 });
 
 // render search results
-function renderSearchResults(searchData) {
+async function renderSearchResults(searchData) {
   let isInWatchlist; // Define the variable here
   let totalResults = searchData.totalResults;
   let resultsPerPage = 10;
-  console.log(totalResults);
+  let renderedResults = 0; // Initialize the rendered results counter
 
   function calcNumPages(totalResults, resultsPerPage) {
     return Math.ceil(totalResults / resultsPerPage);
@@ -139,24 +139,24 @@ function renderSearchResults(searchData) {
 
       console.log(apiSearchUrl);
 
-      fetch(apiSearchUrl)
-        .then(function (response) {
-          return response.json();
-        })
-        .then(function (pageResults) {
-          console.log(pageResults);
+      const response = await fetch(apiSearchUrl);
+      const pageResults = await response.json();
+      console.log(pageResults);
 
-          // filter out results with media type "game"
-          const filteredResults = pageResults.Search.filter(result => result.Type !== "game");
+      // filter out results with media type "game"
+      const filteredResults = pageResults.Search.filter(result => result.Type !== "game");
 
-          filteredResults.forEach((result) => {
-            isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
-            if (result.Poster != "N/A") {
-              renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
-            }
-          });
-        });
+      filteredResults.forEach((result) => {
+        isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
+        if (result.Poster != "N/A") {
+          renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+          renderedResults++; // Increment the rendered results counter
+        }
+      });
     }
+
+    // Update the counter after all search results have been rendered
+    $(`#results-info`).html(`<br/>Total Results: <strong>${renderedResults}</strong></br>`);
   } else {
     searchResults.html(`
       <h4 class="mt-5">No Results</h4>
