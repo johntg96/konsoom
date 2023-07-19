@@ -144,7 +144,7 @@ footer a:hover {
 }
 
 #watchlist-header {
-  margin-top: 25px;
+  margin-top: 120px;
   margin-bottom: 20px;
   background-color: var(--bs-green);
   color: white;
