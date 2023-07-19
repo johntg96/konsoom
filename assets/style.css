@@ -65,10 +65,6 @@ input[type='radio'] {
   margin-top: 20px;
 }
 
-.footer-wrapper {
-  margin-top: 25px;
-}
-
 footer {
   background-color: var(--bs-green);
   border-top: 3px solid lightgreen;
@@ -99,4 +95,5 @@ footer a:hover {
 
 #watchlist-results {
   gap: 10px;
+  margin-bottom: 25px;
 }
