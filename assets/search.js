@@ -245,7 +245,6 @@ function addToWatchlist(movie, isInWatchlist) {
     `;
 
   watchlistResults.append(card);
-  alert(`${movie.title} has been added to your watchlist.`);
 
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
