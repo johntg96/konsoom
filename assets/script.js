@@ -29,4 +29,5 @@ searchBoxBtn.on(`click`, function(event) {
 function toggleDark() {
   var element = document.body;
   element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
+  document.getElementById("title").style.color = "white";
 }
