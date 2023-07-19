@@ -151,7 +151,9 @@ function renderSearchResults(searchData) {
 
           filteredResults.forEach((result) => {
             isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
-            renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+            if (result.Poster != "N/A") {
+              renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+            }
           });
         });
     }
@@ -164,10 +166,6 @@ function renderSearchResults(searchData) {
 
 // render individual card in search results
 function renderCard(poster, title, type, year, isInWatchlist) {
-  if (poster === "N/A") {
-    poster = "./assets/images/200x300.png";
-  }
-
   const saveButtonText = isInWatchlist ? "Remove" : "Save";
   const card = `
     <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
