@@ -243,7 +243,6 @@ function addToWatchlist(movie, isInWatchlist) {
     `;
 
   watchlistResults.append(card);
-  alert(`${movie.title} has been added to your watchlist.`);
 
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
@@ -298,6 +297,12 @@ function renderWatchlist() {
 
     watchlistResults.append(card);
   });
+
+  if (watchlistMovies.length === 0) {
+    $("#watchlist-empty-message").removeClass("d-none");
+  } else {
+    $("#watchlist-empty-message").addClass("d-none");
+  }
 }
 
 // change an elements styling for dark mode
@@ -336,6 +341,7 @@ function setDarkMode(mode) {
   }
 }
 
+renderWatchlist();
 setDarkMode(darkMode);
 retrieveWatchlist();
 getUrlParam(urlParamsStr);
