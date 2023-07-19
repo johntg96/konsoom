@@ -11,7 +11,7 @@
   <link rel="stylesheet" type="text/css" href="./assets/style.css">
   <title>Media Backlogger</title>
 </head>
-<body data-bs-theme="light" d-flex flex-column min-vh-100> <!--added the bootstrap "light" theme to the whole body-->
+<body data-bs-theme="light" class="d-flex flex-column min-vh-100">
   <header>
     <nav class="navbar navbar-expand-lg" data-bs-theme="light">
       <div class="container-fluid">
@@ -22,7 +22,6 @@
             type="checkbox"
             role="switch"
             id="flexSwitchCheckChecked"
-            checked
             onclick="toggleDark()"
             >Dark Mode</input>
         </div>
@@ -33,15 +32,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <form>
+              <form id="media-type-selection">
                 <input type="radio" name="media-type" value="all-types" id="all-types" checked>
                 <label for="all-types">All</label>
                 <input type="radio" name="media-type" value="movie" id="movie">
                 <label for="movie">Movies</label>
                 <input type="radio" name="media-type" value="series" id="series">
-                <label for="series">Series</label>
-                <input type="radio" name="media-type" value="episode" id="episode">
-                <label for="episode">Episodes</label>
+                <label for="series">TV</label>
               </form>
             </li>
           </ul>
@@ -68,11 +65,9 @@
       <div class="row row-cols-auto justify-content-center" id="watchlist-results"></div>
     </div>
   </main>
-  <div class="footer-wrapper">
-    <footer class="container-fluid">
-      <a href="https://github.com/johntg96/media_backlogger" class="row justify-content-center">GitHub Repository</a>
-    </footer>
-  </div>
+  <footer class="container-fluid mt-auto">
+    <a href="https://github.com/johntg96/media_backlogger" class="row justify-content-center">GitHub Repository</a>
+  </footer>
   <!-- JQuery CDN-->
   <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js" integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
   <!-- script -->

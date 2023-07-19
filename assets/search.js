@@ -1,18 +1,16 @@
-// step 1: Get URL parameters of search from URL
 const omdpApiKey = `ab8ac5ee`;
 const omdpApiRootUrl = `https://www.omdbapi.com/?apikey=${omdpApiKey}&`;
 const urlParamsStr = document.location.href;
 const mediaTypeCheckboxAllTypes = $(`#all-types`);
 const mediaTypeCheckboxMovie = $(`#movie`);
 const mediaTypeCheckboxSeries = $(`#series`);
-const mediaTypeCheckboxEpisode = $(`#episode`);
 const searchBox = $(`#search-box`);
 const searchBoxBtn = $(`#search-box-btn`);
 const searchResults = $(`#search-results`);
 let watchlistMovies = []; // Updated to store watchlist movies
 
 const urlParamsArr = [];
-
+let darkMode = localStorage.getItem(`darkMode`);
 let mediaType;
 
 // create an array of the URL parameters
@@ -39,31 +37,26 @@ function setCheckBoxes() {
       mediaTypeCheckboxAllTypes.prop("checked", true);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
     case "movie":
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", true);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
     case "series":
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", true);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
     case "episode":
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", true);
       break;
     default:
       mediaTypeCheckboxAllTypes.prop("checked", false);
       mediaTypeCheckboxMovie.prop("checked", false);
       mediaTypeCheckboxSeries.prop("checked", false);
-      mediaTypeCheckboxEpisode.prop("checked", false);
       break;
   }
 
@@ -198,6 +191,7 @@ searchResults.on("click", ".save-btn", function () {
   const cardData = getCardData(card);
   const isInWatchlist = $(this).data("isInWatchlist") === true;
   addToWatchlist(cardData, isInWatchlist);
+  card.remove(); // remove the card from the search results
   $(this).replaceWith(`<button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>`);
 });
 
@@ -304,11 +298,10 @@ function renderWatchlist() {
   });
 }
 
-retrieveWatchlist();
-
-getUrlParam(urlParamsStr);
-setCheckBoxes();
-searchApi();
+// change an elements styling for dark mode
+function changeColor(element) {
+  element.toggleClass("dark-toggle");
+}
 
 //light dark switch
 function toggleDark() {
@@ -316,10 +309,33 @@ function toggleDark() {
   var element = document.body;
   element.dataset.bsTheme = element.dataset.bsTheme == "light" ? "dark" : "light";
 
-  function changeColor(field) {
-    field.toggleClass("dark-toggle");
+  // store dark mode preference in local storage
+  if (element.dataset.bsTheme == 'dark') {
+    localStorage.setItem(`darkMode`, `dark`);
+  } else {
+    localStorage.setItem(`darkMode`, `light`);
   }
+
+  console.log(`dark mode setting: ${localStorage.getItem(`darkMode`)}`);
 
   // change navbar title color on theme change
   changeColor($(`.navbar-brand`));
 }
+
+// purpose: keep dark mode persistent across page refresh
+function setDarkMode(mode) {
+  if (mode == 'dark') {
+    document.body.dataset.bsTheme = `dark`;
+    $(`#flexSwitchCheckChecked`).prop("checked", true); // set dark mode visual toggle/switch to correct position
+    changeColor($(`.navbar-brand`));
+  } else {
+    document.body.dataset.bsTheme = "light";
+    $(`#flexSwitchCheckChecked`).prop("checked", false);
+  }
+}
+
+setDarkMode(darkMode);
+retrieveWatchlist();
+getUrlParam(urlParamsStr);
+setCheckBoxes();
+searchApi();
