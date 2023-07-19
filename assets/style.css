@@ -74,6 +74,19 @@ input[type='radio'] {
   color: var(--bs-green);
 }
 
+#watchlist-link {
+  margin-right: auto;
+}
+
+#watchlist-link .nav-link {
+  color: white;
+  font-size: 20px;
+}
+
+#watchlist-link:hover .nav-link {
+  color: lightgreen
+}
+
 #media-type-selection input {
   margin-left: 10px;
 }

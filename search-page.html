@@ -17,7 +17,7 @@
   <header>
     <nav class="navbar fixed-top navbar-expand-lg">
       <div class="container-fluid">
-        <a class="navbar-brand" href="./index.html">media_backlogger</a>
+        <a class="navbar-brand" href="./index.html">The Watch Log</a>
         <form class="d-inline-flex mt-1 mb-1" id="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="search-box">
           <button class="btn btn-dark" type="submit" id="search-box-btn">Search</button>
@@ -29,14 +29,19 @@
         <div class="collapse navbar-collapse me-auto" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <form id="media-type-selection">
+              <div id="media-type-selection">
                 <input type="radio" name="media-type" value="all-types" id="all-types" checked>
                 <label for="all-types">All</label>
                 <input type="radio" name="media-type" value="movie" id="movie">
                 <label for="movie">Movies</label>
                 <input type="radio" name="media-type" value="series" id="series">
                 <label for="series">TV</label>
-              </form>
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav" id="watchlist-link">
+            <li class="nav-item">
+              <a class="nav-link" href="#watchlist-header">Watchlist</a>
             </li>
           </ul>
           <!--toggle switch for theme-->
