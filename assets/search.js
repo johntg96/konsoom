@@ -299,6 +299,12 @@ function renderWatchlist() {
 
     watchlistResults.append(card);
   });
+
+  if (watchlistMovies.length === 0) {
+    $("#watchlist-empty-message").removeClass("d-none");
+  } else {
+    $("#watchlist-empty-message").addClass("d-none");
+  }
 }
 
 // change an elements styling for dark mode
@@ -337,6 +343,7 @@ function setDarkMode(mode) {
   }
 }
 
+renderWatchlist();
 setDarkMode(darkMode);
 retrieveWatchlist();
 getUrlParam(urlParamsStr);

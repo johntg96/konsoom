@@ -154,3 +154,8 @@ footer a:hover {
   gap: 10px;
   margin-bottom: 25px;
 }
+
+#watchlist-empty-message {
+  margin-bottom: 40px;
+  font-weight: bold;
+}
