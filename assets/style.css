@@ -23,7 +23,7 @@
 }
 
 .navbar-brand:hover {
-  color: var(--bs-green);
+  color: white;
 }
 
 #search {
@@ -34,6 +34,15 @@
   background-color: #4c4c4c;
   border: none;
   color: lightgray;
+}
+
+#search-box-btn {
+  background-color: #4c4c4c;
+}
+
+#search-box:hover, #search-box-btn:hover {
+  border: 1px solid var(--bs-green);
+  color: lightgreen;
 }
 
 #search-box:focus {
