@@ -30,10 +30,6 @@
   color: white;
 }
 
-#search {
-  width: 45%;
-}
-
 #search-box {
   background-color: #4c4c4c;
   border: none;
@@ -175,4 +171,12 @@ footer a:hover {
 #watchlist-empty-message {
   margin-bottom: 40px;
   font-weight: bold;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  #nav-group {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 }
