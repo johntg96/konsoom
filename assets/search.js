@@ -245,7 +245,6 @@ function addToWatchlist(movie) {
 
   watchlistResults.append(card);
 
-  // Update local storage with the updated watchlist
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
 

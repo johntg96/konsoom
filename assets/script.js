@@ -83,8 +83,7 @@ function addToWatchlist(movie) {
   const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type);
 
   if (isAlreadyAdded) {
-    alert(`${movie.title} is already in your watchlist.`);
-    return; // Exit the function without adding the movie again
+    return;
   }
 
   watchlistMovies.push(movie);
