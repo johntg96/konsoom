@@ -171,7 +171,9 @@ function renderCard(poster, title, type, year, isInWatchlist) {
     <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
       <div class="card mt-2">
         <div class="card-header text-center">
+          <a href="https://www.google.com" target="_blank">
           <img class="card-img-top img-fluid" src="${poster}"/>
+          </a>
         </div>
         <div class="card-body">
           <h6 class="card-title">${title}</h6>
