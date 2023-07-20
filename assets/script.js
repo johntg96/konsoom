@@ -74,7 +74,8 @@ function getCardData(card) {
   const title = card.find(".card-title").text();
   const type = card.find(".card-text").eq(0).text();
   const year = card.find(".card-text").eq(1).text();
-  return { poster, title, type, year };
+  const imdbID = card.find(".card-text").eq(2).text();
+  return { poster, title, type, year, imdbID };
 }
 
 // add movie to watchlist
@@ -93,8 +94,8 @@ function addToWatchlist(movie) {
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
-            <a href="https://www.imdb.com/title/${imdbID}" target="_blank">
-            <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+              <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
             </a>
           </div>
           <div class="card-body">
@@ -149,7 +150,9 @@ function renderWatchlist() {
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
-            <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            <a href="https://www.imdb.com/title/${movie.imdbID}" target="_blank">
+              <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            </a>
           </div>
           <div class="card-body">
             <h6 class="card-title">${movie.title}</h6>
