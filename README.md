@@ -1,12 +1,13 @@
 # konsoom
 ## Description
-Search watched movies or television shows and save them to a collection.
+Search for movies or television series to add to a list for later viewing.
 
 ## Features
 
-- Filter by movie or series
 - Cover art for search results
 - Save to watchlist
+- Filter by movie or TV series
 - Light/dark mode toggle
 
+Available [here](https://johntg96.github.io/konsoom/)
 ![screenshot](./assets/images/screenshot.png)

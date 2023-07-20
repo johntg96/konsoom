@@ -99,8 +99,6 @@ function searchApi() {
     .then(function (data) {
       console.log(data);
       
-      const filteredResults = data.Search.filter(result => result.Type !== "game");
-      
       renderSearchResults(data);
     });
 }
@@ -158,9 +156,8 @@ async function renderSearchResults(searchData) {
     // Update the counter after all search results have been rendered
     $(`#results-info`).html(`<br/>Total Results: <strong>${renderedResults}</strong></br>`);
   } else {
-    searchResults.html(`
-      <h4 class="mt-5">No Results</h4>
-    `);
+    $(`#results-info`).html(`<br/>Total Results: <strong>0</strong>`);
+    searchResults.html(`<h4 class="mt-5">No Results</h4>`);
   }
 }
 
