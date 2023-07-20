@@ -227,6 +227,7 @@ function addToWatchlist(movie) {
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
+            
             <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
           </div>
           <div class="card-body">
@@ -286,7 +287,9 @@ function renderWatchlist() {
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
-            <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            <a href="https://www.imdb.com/title/${movie.imdbID}/" target="_blank"> <!-- Link to IMDb page with the IMDb ID -->
+              <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            </a>
           </div>
           <div class="card-body">
             <h6 class="card-title">${movie.title}</h6>
