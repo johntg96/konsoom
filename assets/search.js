@@ -138,15 +138,7 @@ async function renderSearchResults(searchData) {
 
       const response = await fetch(apiSearchUrl);
       const pageResults = await response.json();
-      console.log(pageResults);  // fetch(apiUrl)
-      //   .then(function (response) {
-      //     return response.json();
-      //   })
-      //   .then(function (data) {
-      //     console.log(data);
-          
-      //     renderSearchResults(data);
-      //   });
+      console.log(pageResults);
 
       // filter out results with media type "game"
       const filteredResults = pageResults.Search.filter(result => result.Type !== "game");
