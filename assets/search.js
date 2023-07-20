@@ -176,9 +176,10 @@ function renderCard(poster, title, type, year, isInWatchlist, imdbID) {
           <h6 class="card-title">${title}</h6>
           <p class="card-text">${type}</p>
           <p class="card-text">${year}</p>
+          <p class="card-text imdbID-text">imdb: <span style="font-family:monospace;">${imdbID}</span></p>
         </div>
         <div class="card-footer">
-          <button class="btn ${isInWatchlist ? "btn-danger remove-btn" : "btn-success save-btn"}" style="width:100%;">${saveButtonText}</button>
+          <button class="btn ${isInWatchlist ? "btn-outline-danger remove-btn" : "btn-success save-btn"}" style="width:100%;">${saveButtonText}</button>
         </div>
       </div>
     </div>
@@ -193,7 +194,7 @@ searchResults.on("click", ".save-btn", function () {
   const cardData = getCardData(card);
   const isInWatchlist = $(this).data("isInWatchlist") === true;
   addToWatchlist(cardData, isInWatchlist);
-  $(this).replaceWith(`<button class="btn btn-success save-btn" style="width:100%; background-color: orange; color: blue;">Added</button>`);
+  $(this).replaceWith(`<button class="btn btn-success save-btn" style="width:100%; background-color: orange; color: black;">Added</button>`);
 });
 
 $("#watchlist-results").on("click", ".remove-btn", function () {
@@ -208,12 +209,13 @@ function getCardData(card) {
   const title = card.find(".card-title").text();
   const type = card.find(".card-text").eq(0).text();
   const year = card.find(".card-text").eq(1).text();
-  return { poster, title, type, year };
+  const imdbID = card.find(".card-text").eq(2).text();
+  return { poster, title, type, year, imdbID };
 }
 
 // add movie to watchlist
 function addToWatchlist(movie, isInWatchlist) {
-  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type);
+  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type && m.imdbID === movie.imdbID);
 
   if (isAlreadyAdded) {
     alert(`${movie.title} is already in your watchlist.`);
@@ -235,7 +237,7 @@ function addToWatchlist(movie, isInWatchlist) {
             <p class="card-text">${movie.year}</p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>
+            <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
           </div>
         </div>
       </div>
@@ -288,7 +290,7 @@ function renderWatchlist() {
             <p class="card-text">${movie.year}</p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>
+            <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
           </div>
         </div>
       </div>
