@@ -235,7 +235,7 @@ function addToWatchlist(movie) {
             <h6 class="card-title">${movie.title}</h6>
             <p class="card-text">${movie.type}</p>
             <p class="card-text">${movie.year}</p>
-            <p class="card-text imdbID-text">${imdbID}</p>
+            <p class="card-text imdbID-text">${movie.imdbID}</p>
           </div>
           <div class="card-footer">
             <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
