@@ -110,7 +110,7 @@ searchBoxBtn.on("click", function (event) {
 });
 
 // render search results
-async function renderSearchResults(searchData,) {
+async function renderSearchResults(searchData) {
   let isInWatchlist; // Define the variable here
   let totalResults = searchData.totalResults;
   let resultsPerPage = 10;
