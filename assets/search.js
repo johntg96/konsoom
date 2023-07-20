@@ -176,7 +176,7 @@ function renderCard(poster, title, type, year, isInWatchlist, imdbID) {
           <h6 class="card-title">${title}</h6>
           <p class="card-text">${type}</p>
           <p class="card-text">${year}</p>
-          <p class="card-text imdbID-text">imdb: <span style="font-family:monospace;">${imdbID}</span></p>
+          <p class="card-text imdbID-text">${imdbID}</p>
         </div>
         <div class="card-footer">
           <button class="btn ${isInWatchlist ? "btn-outline-danger remove-btn" : "btn-success save-btn"}" style="width:100%;">${saveButtonText}</button>
@@ -245,11 +245,6 @@ function addToWatchlist(movie) {
     `;
 
   watchlistResults.append(card);
-
-  // Save IMDb ID in local storage
-  const watchlistImdbIds = JSON.parse(localStorage.getItem('watchlistImdbIds')) || [];
-  watchlistImdbIds.push(movie.imdbID);
-  localStorage.setItem('watchlistImdbIds', JSON.stringify(watchlistImdbIds));
 
   // Update local storage with the updated watchlist
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
