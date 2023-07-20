@@ -162,7 +162,7 @@ async function renderSearchResults(searchData) {
 
 // render individual card in search results
 function renderCard(poster, title, type, year, isInWatchlist, imdbID) {
-  const saveButtonText = isInWatchlist ? "Remove" : "Save";
+  const saveButtonText = isInWatchlist ? "Added" : "Save";
   const card = `
     <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
       <div class="card mt-2">
@@ -235,6 +235,7 @@ function addToWatchlist(movie) {
             <h6 class="card-title">${movie.title}</h6>
             <p class="card-text">${movie.type}</p>
             <p class="card-text">${movie.year}</p>
+            <p class="card-text imdbID-text">${imdbID}</p>
           </div>
           <div class="card-footer">
             <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
@@ -291,6 +292,7 @@ function renderWatchlist() {
             <h6 class="card-title">${movie.title}</h6>
             <p class="card-text">${movie.type}</p>
             <p class="card-text">${movie.year}</p>
+            <p class="card-text imdbID-text">${movie.imdbID}</p>
           </div>
           <div class="card-footer">
             <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
