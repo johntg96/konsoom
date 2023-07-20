@@ -178,7 +178,7 @@ function renderCard(poster, title, type, year, isInWatchlist, imdbID) {
           <p class="card-text imdbID-text">${imdbID}</p>
         </div>
         <div class="card-footer">
-          <button class="btn ${isInWatchlist ? "btn-warning remove-btn" : "btn-success save-btn"}" style="width:100%;">${saveButtonText}</button>
+          <button class="btn ${isInWatchlist ? "btn-warning remove-btn" : "btn-success save-btn"}" style="width:100%; color:white;">${saveButtonText}</button>
         </div>
       </div>
     </div>
@@ -193,7 +193,7 @@ searchResults.on("click", ".save-btn", function () {
   const cardData = getCardData(card);
   const isInWatchlist = $(this).data("isInWatchlist") === true;
   addToWatchlist(cardData, isInWatchlist);
-  $(this).replaceWith(`<button class="btn btn-warning save-btn" style="width:100%;">Added</button>`);
+  $(this).replaceWith(`<button class="btn btn-warning save-btn" style="width:100%; color:white;">Added</button>`);
 });
 
 $("#watchlist-results").on("click", ".remove-btn", function () {
