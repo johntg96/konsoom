@@ -121,11 +121,6 @@ input[type='radio'] {
   text-overflow: ellipsis;
 }
 
-.card-title:hover {
-  text-overflow: visible;
-  height: auto;
-}
-
 .imdbID-text {
   color: gray;
   font-size: 10px;
