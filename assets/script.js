@@ -104,7 +104,7 @@ function addToWatchlist(movie) {
             <p class="card-text">${movie.year}</p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>
+            <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
           </div>
         </div>
       </div>
@@ -160,7 +160,7 @@ function renderWatchlist() {
             <p class="card-text">${movie.year}</p>
           </div>
           <div class="card-footer">
-            <button class="btn btn-danger remove-btn" style="width:100%;">Remove</button>
+            <button class="btn btn-outline-danger remove-btn" style="width:100%;">Remove</button>
           </div>
         </div>
       </div>
