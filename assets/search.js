@@ -217,7 +217,6 @@ function addToWatchlist(movie) {
   const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type && m.imdbID === movie.imdbID);
 
   if (isAlreadyAdded) {
-    alert(`${movie.title} is already in your watchlist.`);
     return;
   }
 
@@ -246,7 +245,6 @@ function addToWatchlist(movie) {
 
   watchlistResults.append(card);
 
-  // Update local storage with the updated watchlist
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
 
