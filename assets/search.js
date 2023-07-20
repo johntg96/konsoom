@@ -148,12 +148,12 @@ async function renderSearchResults(searchData) {
         isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
         if (result.Poster != "N/A") {
           renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist, result.imdbID);
-          renderedResults++; // Increment the rendered results counter
+          renderedResults++;
         }
       });
     }
 
-    // Update the counter after all search results have been rendered
+    // update the counter after all search results have been rendered
     $(`#results-info`).html(`<br/>Total Results: <strong>${renderedResults}</strong></br>`);
   } else {
     $(`#results-info`).html(`<br/>Total Results: <strong>0</strong>`);
@@ -212,12 +212,12 @@ function getCardData(card) {
 }
 
 // add movie to watchlist
-function addToWatchlist(movie, isInWatchlist) {
+function addToWatchlist(movie) {
   const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type);
 
   if (isAlreadyAdded) {
     alert(`${movie.title} is already in your watchlist.`);
-    return; // Exit the function without adding the movie again
+    return;
   }
 
   watchlistMovies.push(movie);
@@ -243,6 +243,12 @@ function addToWatchlist(movie, isInWatchlist) {
 
   watchlistResults.append(card);
 
+  // Save IMDb ID in local storage
+  const watchlistImdbIds = JSON.parse(localStorage.getItem('watchlistImdbIds')) || [];
+  watchlistImdbIds.push(movie.imdbID);
+  localStorage.setItem('watchlistImdbIds', JSON.stringify(watchlistImdbIds));
+
+  // Update local storage with the updated watchlist
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
 

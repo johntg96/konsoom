@@ -78,8 +78,8 @@ function getCardData(card) {
 }
 
 // add movie to watchlist
-function addToWatchlist(movie, isInWatchlist) {
-  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type);;
+function addToWatchlist(movie) {
+  const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type);
 
   if (isAlreadyAdded) {
     alert(`${movie.title} is already in your watchlist.`);
@@ -165,7 +165,7 @@ function renderWatchlist() {
 
     watchlistResults.append(card);
   });
-  
+
   if (watchlistMovies.length === 0) {
     $("#watchlist-empty-message").removeClass("d-none");
   } else {
