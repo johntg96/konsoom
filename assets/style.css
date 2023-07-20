@@ -11,6 +11,10 @@
   background-color: black;
   color: white;
   border-bottom: 2px solid #4e4e4e;
+  -webkit-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.75);
+
 }
 
 .navbar .container-fluid {
@@ -157,6 +161,10 @@ footer a:hover {
   font-size: 30px;
   font-weight: bold;
   border-bottom: 3px solid lightgreen;
+  border-radius: 6px;
+  -webkit-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.75);
 }
 
 #watchlist-results {
