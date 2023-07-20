@@ -148,12 +148,12 @@ async function renderSearchResults(searchData) {
         isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
         if (result.Poster != "N/A") {
           renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist, result.imdbID);
-          renderedResults++; // Increment the rendered results counter
+          renderedResults++;
         }
       });
     }
 
-    // Update the counter after all search results have been rendered
+    // update the counter after all search results have been rendered
     $(`#results-info`).html(`<br/>Total Results: <strong>${renderedResults}</strong></br>`);
   } else {
     $(`#results-info`).html(`<br/>Total Results: <strong>0</strong>`);
@@ -194,7 +194,7 @@ searchResults.on("click", ".save-btn", function () {
   const cardData = getCardData(card);
   const isInWatchlist = $(this).data("isInWatchlist") === true;
   addToWatchlist(cardData, isInWatchlist);
-  $(this).replaceWith(`<button class="btn btn-success save-btn" style="width:100%; background-color: orange; color: black;">Added</button>`);
+  $(this).replaceWith(`<button class="btn btn-success save-btn" style="width:100%; background-color: orange; color: white;">Added</button>`);
 });
 
 $("#watchlist-results").on("click", ".remove-btn", function () {
@@ -214,12 +214,12 @@ function getCardData(card) {
 }
 
 // add movie to watchlist
-function addToWatchlist(movie, isInWatchlist) {
+function addToWatchlist(movie) {
   const isAlreadyAdded = watchlistMovies.some((m) => m.title === movie.title && m.year === movie.year && m.type === movie.type && m.imdbID === movie.imdbID);
 
   if (isAlreadyAdded) {
     alert(`${movie.title} is already in your watchlist.`);
-    return; // Exit the function without adding the movie again
+    return;
   }
 
   watchlistMovies.push(movie);
@@ -229,6 +229,7 @@ function addToWatchlist(movie, isInWatchlist) {
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
+            
             <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
           </div>
           <div class="card-body">
@@ -245,6 +246,12 @@ function addToWatchlist(movie, isInWatchlist) {
 
   watchlistResults.append(card);
 
+  // Save IMDb ID in local storage
+  const watchlistImdbIds = JSON.parse(localStorage.getItem('watchlistImdbIds')) || [];
+  watchlistImdbIds.push(movie.imdbID);
+  localStorage.setItem('watchlistImdbIds', JSON.stringify(watchlistImdbIds));
+
+  // Update local storage with the updated watchlist
   localStorage.setItem('watchlist', JSON.stringify(watchlistMovies));
 }
 
@@ -282,7 +289,9 @@ function renderWatchlist() {
       <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
         <div class="card mt-2">
           <div class="card-header text-center">
-            <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            <a href="https://www.imdb.com/title/${movie.imdbID}/" target="_blank"> <!-- Link to IMDb page with the IMDb ID -->
+              <img class="card-img-top img-fluid animate__animated animate__fadeIn" src="${movie.poster}"/>
+            </a>
           </div>
           <div class="card-body">
             <h6 class="card-title">${movie.title}</h6>
