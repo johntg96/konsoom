@@ -193,7 +193,7 @@ searchResults.on("click", ".save-btn", function () {
   const cardData = getCardData(card);
   const isInWatchlist = $(this).data("isInWatchlist") === true;
   addToWatchlist(cardData, isInWatchlist);
-  $(this).replaceWith(`<button class="btn btn-success save-btn" style="width:100%; background-color: orange; color: blue;">Added</button>`);
+  $(this).replaceWith(`<button class="btn btn-success save-btn" style="width:100%; background-color: orange; color: white;">Added</button>`);
 });
 
 $("#watchlist-results").on("click", ".remove-btn", function () {
