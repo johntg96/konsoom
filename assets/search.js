@@ -92,15 +92,14 @@ function searchApi() {
     apiUrl = `${omdpApiRootUrl}s=${urlParamsArr[1][1]}`;
   }
 
-  fetch(apiUrl)
-    .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data);
-      
-      renderSearchResults(data);
-    });
+  async function makeApiCall() {
+    const resp = await fetch(apiUrl);
+    const data = await resp.json();
+
+    renderSearchResults(data)
+  }
+
+  makeApiCall();
 }
 
 // search button event listener
@@ -139,7 +138,15 @@ async function renderSearchResults(searchData) {
 
       const response = await fetch(apiSearchUrl);
       const pageResults = await response.json();
-      console.log(pageResults);
+      console.log(pageResults);  // fetch(apiUrl)
+      //   .then(function (response) {
+      //     return response.json();
+      //   })
+      //   .then(function (data) {
+      //     console.log(data);
+          
+      //     renderSearchResults(data);
+      //   });
 
       // filter out results with media type "game"
       const filteredResults = pageResults.Search.filter(result => result.Type !== "game");
