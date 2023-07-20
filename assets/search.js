@@ -149,7 +149,7 @@ async function renderSearchResults(searchData) {
       filteredResults.forEach((result) => {
         isInWatchlist = watchlistMovies.some((movie) => movie.imdbID === result.imdbID);
         if (result.Poster != "N/A") {
-          renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist);
+          renderCard(result.Poster, result.Title, result.Type, result.Year, isInWatchlist, result.imdbID);
           renderedResults++; // Increment the rendered results counter
         }
       });
@@ -165,13 +165,13 @@ async function renderSearchResults(searchData) {
 }
 
 // render individual card in search results
-function renderCard(poster, title, type, year, isInWatchlist) {
+function renderCard(poster, title, type, year, isInWatchlist, imdbID) {
   const saveButtonText = isInWatchlist ? "Remove" : "Save";
   const card = `
     <div class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2 align-self-end">
       <div class="card mt-2">
         <div class="card-header text-center">
-          <a href="https://www.google.com" target="_blank">
+          <a href="https://www.imdb.com/title/${imdbID}/" target="_blank">
           <img class="card-img-top img-fluid" src="${poster}"/>
           </a>
         </div>
