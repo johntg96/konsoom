@@ -179,4 +179,8 @@ footer a:hover {
     display: flex;
     flex-wrap: nowrap;
   }
+  
+  #watchlist-header {
+    margin-top: 175px;
+  }
 }
